@@ -1,0 +1,1276 @@
+﻿<Gauge Name="AB_anims" Version="1.0">
+  <Update Hidden="Yes">
+
+(L:Pause_code, bool) 0 ==
+if{
+	<!--  Wiper anim L -->
+	(L:AB_wiperL, enum) 2 == (L:AB_BUS_DC_1_Avail, number) 1 ==  &amp;&amp; (L:Wiperstart_fastL, enum) 0 == &amp;&amp; 
+	if{
+		1 (&gt; L:Wiperstart_fastL, enum)
+		0 (&gt; L:Wiperstart_slowL, enum)
+	}
+	(L:Wiperstart_fastL, enum) 1 ==
+	if{
+		(L:Wiper_PositionL, number) 10 + (&gt; L:Wiper_PositionL, number)
+		1 (&gt; L:ASC_WIPERS_FAST_L, bool)
+		(L:Wiper_PositionL, number) 100 &gt;
+		if{
+			100 (&gt; L:Wiper_PositionL, number)
+			2 (&gt; L:Wiperstart_fastL, enum)
+		}
+	}
+	(L:Wiperstart_fastL, enum) 2 ==
+	if{
+		(L:Wiper_PositionL, number) 10 - (&gt; L:Wiper_PositionL, number)
+		(L:Wiper_PositionL, number) 0 &lt;
+		if{
+			0 (&gt; L:Wiper_PositionL, number)
+			0 (&gt; L:Wiperstart_fastL, enum)
+		}
+	}
+	(L:AB_wiperL, enum) 1 == (L:AB_BUS_DC_1_Avail, number) 1 ==  &amp;&amp; (L:Wiperstart_slowL, enum) 0 == &amp;&amp; 
+	if{
+		1 (&gt; L:Wiperstart_slowL, enum)
+		0 (&gt; L:Wiperstart_fastL, enum)
+	}
+	(L:Wiperstart_slowL, enum) 1 ==
+	if{
+		(L:Wiper_PositionL, number) 7 + (&gt; L:Wiper_PositionL, number)
+		1 (&gt; L:ASC_WIPERS_SLOW_L, bool)
+		(L:Wiper_PositionL, number) 100 &gt;
+		if{
+			100 (&gt; L:Wiper_PositionL, number)
+			2 (&gt; L:Wiperstart_slowL, enum)
+		}
+	}
+	(L:Wiperstart_slowL, enum) 2 ==
+	if{
+		(L:Wiper_PositionL, number) 7 - (&gt; L:Wiper_PositionL, number)
+		(L:Wiper_PositionL, number) 0 &lt;
+		if{
+			0 (&gt; L:Wiper_PositionL, number)
+			0 (&gt; L:Wiperstart_slowL, enum)
+		}
+	}
+	
+	<!--  Wiper anim R -->
+	(L:AB_wiperR, enum) 2 == (L:AB_BUS_DC_2_Avail, number) 1 ==  &amp;&amp; (L:Wiperstart_fastR, enum) 0 == &amp;&amp; 
+	if{
+		1 (&gt; L:Wiperstart_fastR, enum)
+		0 (&gt; L:Wiperstart_slowR, enum)
+	}
+	(L:Wiperstart_fastR, enum) 1 ==
+	if{
+		(L:Wiper_PositionR, number) 10 + (&gt; L:Wiper_PositionR, number)
+		1 (&gt; L:ASC_WIPERS_FAST_R, bool)
+		(L:Wiper_PositionR, number) 100 &gt;
+		if{
+			100 (&gt; L:Wiper_PositionR, number)
+			2 (&gt; L:Wiperstart_fastR, enum)
+		}
+	}
+	(L:Wiperstart_fastR, enum) 2 ==
+	if{
+		(L:Wiper_PositionR, number) 10 - (&gt; L:Wiper_PositionR, number)
+		(L:Wiper_PositionR, number) 0 &lt;
+		if{
+			0 (&gt; L:Wiper_PositionR, number)
+			0 (&gt; L:Wiperstart_fastR, enum)
+		}
+	}
+	(L:AB_wiperR, enum) 1 == (L:AB_BUS_DC_2_Avail, number) 1 ==  &amp;&amp; (L:Wiperstart_slowR, enum) 0 == &amp;&amp; 
+	if{
+		1 (&gt; L:Wiperstart_slowR, enum)
+		0 (&gt; L:Wiperstart_fastR, enum)
+	}
+	(L:Wiperstart_slowR, enum) 1 ==
+	if{
+		(L:Wiper_PositionR, number) 7 + (&gt; L:Wiper_PositionR, number)
+		1 (&gt; L:ASC_WIPERS_SLOW_R, bool)
+		(L:Wiper_PositionR, number) 100 &gt;
+		if{
+			100 (&gt; L:Wiper_PositionR, number)
+			2 (&gt; L:Wiperstart_slowR, enum)
+		}
+	}
+	(L:Wiperstart_slowR, enum) 2 ==
+	if{
+		(L:Wiper_PositionR, number) 7 - (&gt; L:Wiper_PositionR, number)
+		(L:Wiper_PositionR, number) 0 &lt;
+		if{
+			0 (&gt; L:Wiper_PositionR, number)
+			0 (&gt; L:Wiperstart_slowR, enum)
+		}
+	}
+				
+
+	<!--  Sidewindow CP  -->
+	(A:GROUND VELOCITY, knots) 40 &gt;
+	(L:Sidewindow_pos_CP, number) 1 &gt; &amp;&amp;
+	if{	
+		0 (&gt;L:AB_SIDEWINDOW_LOCKING_PIN_LOCKED_CPT, bool)
+		0 (&gt;L:Sidewindow_open_CP, bool)
+		1 (&gt; L:Sidewindow_close_CP, bool)
+	}
+	(L:Sidewindow_open_CP, bool) 1 == (L:Sidewindow_pos_CP, number) 100 &lt; &amp;&amp; 
+	if{
+		(L:Sidewindow_pos_CP, number) 1 + (&gt; L:Sidewindow_pos_CP, number)
+
+		(L:Sidewindow_pos_CP, number) 33 &gt;  
+		if{
+				1 (&gt;L:AB_SIDEWINDOW_LOCKING_PIN_LOCKED_CPT, bool)
+		}
+	}
+	(L:Sidewindow_close_CP, bool) 1 == (L:Sidewindow_pos_CP, number) 0 &gt; &amp;&amp;
+	if{
+		(L:Sidewindow_pos_CP, number) 1.75 - (&gt; L:Sidewindow_pos_CP, number)
+		(L:Sidewindow_pos_CP, number) 0 &lt;
+		if{
+			0 (&gt; L:Sidewindow_pos_CP, number)
+		}
+	}
+	(L:Sidewindow_open_CP, bool) 1 == (L:Sidewindow_pos_CP, number) 100 == &amp;&amp;
+	if{
+		0 (&gt; L:Sidewindow_open_CP, bool) 
+	}
+	(L:Sidewindow_close_CP, bool) 1 == (L:Sidewindow_pos_CP, number) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:Sidewindow_close_CP, bool) 
+	}
+	<!--  Sidewindow FO -->
+	(A:GROUND VELOCITY, knots) 40 &gt;
+	(L:Sidewindow_pos_FO, number) 1 &gt; &amp;&amp;
+	if{	
+		0 (&gt;L:AB_SIDEWINDOW_LOCKING_PIN_LOCKED_FO, bool)
+		0 (&gt;L:Sidewindow_open_FO, bool)
+		1 (&gt; L:Sidewindow_close_FO, bool)
+	}
+	(L:Sidewindow_open_FO, bool) 1 == (L:Sidewindow_pos_FO, number) 100 &lt; &amp;&amp; 
+	if{
+		(L:Sidewindow_pos_FO, number) 1 + (&gt; L:Sidewindow_pos_FO, number)
+		
+		(L:Sidewindow_pos_FO, number) 33 &gt;  
+		if{
+			<!--	
+			(L:Sidewindow_pos_FO, number) 40 &gt;=   
+			(L:Sidewindow_pos_FO, number) 43 &lt; &amp;&amp; 
+			(L:Sidewindow_pos_FO, number) 50 &gt;=   
+			(L:Sidewindow_pos_FO, number) 53 &lt; &amp;&amp; ||
+			(L:Sidewindow_pos_FO, number) 60 &gt;=   
+			(L:Sidewindow_pos_FO, number) 63 &lt; &amp;&amp; ||
+			(L:Sidewindow_pos_FO, number) 70 &gt;=   
+			(L:Sidewindow_pos_FO, number) 73 &lt; &amp;&amp; ||
+			(L:Sidewindow_pos_FO, number) 80 &gt;=   
+			(L:Sidewindow_pos_FO, number) 83 &lt; &amp;&amp; ||
+			(L:Sidewindow_pos_FO, number) 90 &gt;=   
+			(L:Sidewindow_pos_FO, number) 93 &lt; &amp;&amp; ||
+			if{
+				0 (&gt;L:AB_SIDEWINDOW_LOCKING_PIN_LOCKED_FO, bool)
+			}
+			els{
+				1 (&gt;L:AB_SIDEWINDOW_LOCKING_PIN_LOCKED_FO, bool)
+			}
+			-->             
+
+			1 (&gt;L:AB_SIDEWINDOW_LOCKING_PIN_LOCKED_FO, bool)
+		}
+	}
+	(L:Sidewindow_close_FO, bool) 1 == (L:Sidewindow_pos_FO, number) 0 &gt; &amp;&amp;
+	if{
+		(L:Sidewindow_pos_FO, number) 1.75 - (&gt; L:Sidewindow_pos_FO, number)
+		(L:Sidewindow_pos_FO, number) 0 &lt;
+		if{
+			0 (&gt; L:Sidewindow_pos_FO, number)
+		}
+	}
+	(L:Sidewindow_open_FO, bool) 1 == (L:Sidewindow_pos_FO, number) 100 == &amp;&amp;
+	if{
+		0 (&gt; L:Sidewindow_open_FO, bool) 
+	}
+	(L:Sidewindow_close_FO, bool) 1 == (L:Sidewindow_pos_FO, number) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:Sidewindow_close_FO, bool) 
+	}
+	
+	<!-- Cabin doors -->
+
+	<!--  close exits  -->	
+
+		
+	<!--  Table 1 -->
+	(L:Table1_open, bool) 1 == (L:Table1_pos, number) 100 &lt; &amp;&amp;
+	if{
+		(L:Table1_pos, number) 3 + (&gt; L:Table1_pos, number)
+	}
+	(L:Table1_close, bool) 1 == (L:Table1_pos, number) 0 &gt; &amp;&amp;
+	if{
+		(L:Table1_pos, number) 2 - (&gt; L:Table1_pos, number)
+	}
+	(L:Table1_open, bool) 1 == (L:Table1_pos, number) 100 == &amp;&amp;
+	if{
+		0 (&gt; L:Table1_open, bool) 
+	}
+	(L:Table1_close, bool) 1 == (L:Table1_pos, number) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:Table1_close, bool) 
+	}
+
+	<!--  Table 2 -->
+	(L:Table2_open, bool) 1 == (L:Table2_pos, number) 100 &lt; &amp;&amp;
+	if{
+		(L:Table2_pos, number) 3 + (&gt; L:Table2_pos, number)
+	}
+	(L:Table2_close, bool) 1 == (L:Table2_pos, number) 0 &gt; &amp;&amp;
+	if{
+		(L:Table2_pos, number) 2 - (&gt; L:Table2_pos, number)
+	}
+	(L:Table2_open, bool) 1 == (L:Table2_pos, number) 100 == &amp;&amp;
+	if{
+		0 (&gt; L:Table2_open, bool) 
+	}
+	(L:Table2_close, bool) 1 == (L:Table2_pos, number) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:Table2_close, bool) 
+	}
+		
+	<!--  Jumpseat -->
+	(L:Jumpseat_open, bool) 1 == (L:Jumpseat_pos, number) 100 &lt; &amp;&amp;
+	if{
+		(L:Jumpseat_pos, number) 3 + (&gt; L:Jumpseat_pos, number)
+	}
+	(L:Jumpseat_close, bool) 1 == (L:Jumpseat_pos, number) 0 &gt; &amp;&amp;
+	if{
+		(L:Jumpseat_pos, number) 2 - (&gt; L:Jumpseat_pos, number)
+	}
+	(L:Jumpseat_open, bool) 1 == (L:Jumpseat_pos, number) 100 == &amp;&amp;
+	if{
+		0 (&gt; L:Jumpseat_open, bool) 
+	}
+	(L:Jumpseat_close, bool) 1 == (L:Jumpseat_pos, number) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:Jumpseat_close, bool) 
+	}
+	
+	(L:Jumpseat_open, bool) 1 == (L:Jumpseat_pos, number) 5 &lt; &amp;&amp;
+	if{
+		1 (&gt; L:ASC_OBSERVER_SEAT_EXT, bool) 
+	}
+	(L:Jumpseat_close, bool) 1 == (L:Jumpseat_pos, number) 95 &gt; &amp;&amp;
+	if{
+		1 (&gt; L:ASC_OBSERVER_SEAT_RET, bool) 
+	}
+
+	<!--  Sunshade1 -->
+	(L:Sunshade1_open, bool) 1 == (L:Sunshade1_pos, number) 50 &lt; &amp;&amp;
+	if{
+		(L:Sunshade1_pos, number) 3 + (&gt; L:Sunshade1_pos, number)
+	}
+	(L:Sunshade1_close, bool) 1 == (L:Sunshade1_pos, number) 0 &gt; &amp;&amp;
+	if{
+		(L:Sunshade1_pos, number) 2 - (&gt; L:Sunshade1_pos, number)
+	}
+	(L:Sunshade1_open, bool) 1 == (L:Sunshade1_pos, number) 50 == &amp;&amp;
+	if{
+		0 (&gt; L:Sunshade1_open, bool) 
+	}
+	(L:Sunshade1_close, bool) 1 == (L:Sunshade1_pos, number) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:Sunshade1_close, bool) 
+	}
+
+	<!--  Sunshade2 -->
+	(L:Sunshade2_open, bool) 1 == (L:Sunshade2_pos, number) 50 &lt; &amp;&amp;
+	if{
+		(L:Sunshade2_pos, number) 3 + (&gt; L:Sunshade2_pos, number)
+	}
+	(L:Sunshade2_close, bool) 1 == (L:Sunshade2_pos, number) 0 &gt; &amp;&amp;
+	if{
+		(L:Sunshade2_pos, number) 2 - (&gt; L:Sunshade2_pos, number)
+	}
+	(L:Sunshade2_open, bool) 1 == (L:Sunshade2_pos, number) 50 == &amp;&amp;
+	if{
+		0 (&gt; L:Sunshade2_open, bool) 
+	}
+	(L:Sunshade2_close, bool) 1 == (L:Sunshade2_pos, number) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:Sunshade2_close, bool) 
+	}
+
+	
+	<!-- Spoiler Logic -->
+
+	(A:sim on ground,bool) 0 == <!-- Spoiler Inhibitor -->
+	if{
+    	(L:FMA_THRmode, number) 9 == <!-- A.FLOOR -->
+    	(L:Throttle_ani_fix_L, number) 75 &gt;= (L:Throttle_ani_fix_R, number) 75 &gt;= || || <!-- MCT detent -->
+		(A:flaps handle index,number) 4 &gt;= 41 42 (L:AB_TypeIdent, number) rng &amp;&amp; || <!-- A321 -->
+		(A:flaps handle index,number) 5 == (L:AB_TypeIdent, number) 41 &lt; &amp;&amp; || <!-- anything else than A321 -->
+    	if{
+        	0 (&gt;K:SPOILERS_SET) <!--inhibits-->
+    	}
+	}
+
+	(A:SIM ON GROUND, bool) 1 ==
+	(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 30 &lt;= &amp;&amp;
+	if{
+		(L:FBW_SEC_3, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER2_L, number)       
+		}
+		(L:FBW_SEC_3, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER2_L, number)
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(A:ATC MODEL, string) 'A321CFM' scmp 0 ==
+			(A:ATC MODEL, string) 'A321IAE' scmp 0 == || 
+			if{
+				(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * 14 min (&gt; L:AB_SPOILER3_L, number) <!-- limit spoiler to 7° -->
+			}
+			els{
+				(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER3_L, number) 
+			}			
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER4_L, number)
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Blue_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER3_L, number)
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER4_L, number)
+		}
+		(A:AILERON LEFT DEFLECTION PCT, percent) 0 &lt;
+		if{
+			(A:AILERON LEFT DEFLECTION PCT, percent) abs 0.45 * (&gt; L:AB_Spoiler5_L_int, number)
+			(L:AB_Spoiler5_L_int, number) 0 &lt;
+			if{
+				0 (&gt; L:AB_Spoiler5_L_int, number)
+			}
+			(L:FBW_SEC_2, number) 1 ==
+			(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_Spoiler5_L_int, number) (&gt; L:AB_SPOILER5_L_target, number)
+			}
+			(L:FBW_SEC_2, number) 0 ==
+			(L:Green_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER5_L_target, number)
+			}
+		}
+	els{
+			0 (&gt; L:AB_SPOILER5_L_target, number)
+				0 (&gt; L:AB_Spoiler5_L_int, number)
+		}
+		(L:AB_SPOILER5_L, number) (L:AB_SPOILER5_L_target, number) &lt;
+		if{
+			(L:AB_SPOILER5_L, number) 5 + (&gt; L:AB_SPOILER5_L, number)
+		}
+		(L:AB_SPOILER5_L, number) (L:AB_SPOILER5_L_target, number) &gt;
+		if{
+			(L:AB_SPOILER5_L, number) 5 - (&gt; L:AB_SPOILER5_L, number)
+		}
+		(A:AILERON RIGHT DEFLECTION PCT, percent) 0 &gt;
+		if{
+			(A:AILERON RIGHT DEFLECTION PCT, percent) abs 0.45 * (&gt; L:AB_Spoiler5_R_int, number)
+			(L:AB_Spoiler5_R_int, number) 0 &lt;
+			if{
+				0 (&gt; L:AB_Spoiler5_R_int, number)
+			}
+			(L:FBW_SEC_2, number) 1 ==
+			(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_Spoiler5_R_int, number) (&gt; L:AB_SPOILER5_R_target, number)
+			}
+			(L:FBW_SEC_2, number) 0 ==
+			(L:Green_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER5_R_target, number)
+			}
+		}
+		els{
+			0 (&gt; L:AB_SPOILER5_R_target, number)
+				0 (&gt; L:AB_Spoiler5_R_int, number)
+		}
+		(L:AB_SPOILER5_R, number) (L:AB_SPOILER5_R_target, number) &lt;
+		if{
+			(L:AB_SPOILER5_R, number) 5 + (&gt; L:AB_SPOILER5_R, number)
+		}
+		(L:AB_SPOILER5_R, number) (L:AB_SPOILER5_R_target, number) &gt;
+		if{
+			(L:AB_SPOILER5_R, number) 5 - (&gt; L:AB_SPOILER5_R, number)
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER4_R, number)
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			
+			(A:ATC MODEL, string) 'A321CFM' scmp 0 ==
+			(A:ATC MODEL, string) 'A321IAE' scmp 0 == || 
+			if{
+				(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * 14 min (&gt; L:AB_SPOILER3_R, number) <!-- limit spoiler to 7° -->
+			}
+			els{
+				(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER3_R, number)
+			}			
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER4_R, number)
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Blue_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER3_R, number)
+		}
+		(L:FBW_SEC_3, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER2_R, number)
+		}
+		(L:FBW_SEC_3, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER2_R, number)
+		}
+	}
+	
+	(A:SIM ON GROUND, bool) 1 ==
+	(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 30 &gt;= &amp;&amp;
+	if{	
+		(L:FBW_SEC_3, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER2_L, number)
+		}
+		(L:FBW_SEC_3, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER2_L, number)
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER3_L, number)
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER4_L, number)
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Blue_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER3_L, number)
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER4_L, number)
+		}
+		(L:FBW_SEC_2, number) 1 ==
+		(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER5_L, number)
+			(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER5_R, number)
+		}
+		(L:FBW_SEC_2, number) 0 ==
+		(L:Green_Pressure, number) 1500 &lt;= ||
+		if{
+			0 (&gt; L:AB_SPOILER5_L, number)
+			0 (&gt; L:AB_SPOILER5_R, number)
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER4_R, number)
+		}
+		(L:FBW_SEC_1, number) 1 ==
+		(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER3_R, number)
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER4_R, number)
+		}
+		(L:FBW_SEC_1, number) 0 ==
+		(L:Blue_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER3_R, number)
+		}
+		(L:FBW_SEC_3, number) 1 ==
+		(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+		if{
+			(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 0.875 * (&gt; L:AB_SPOILER2_R, number)
+		}
+		(L:FBW_SEC_3, number) 0 ==
+		(L:Yellow_Pressure, number) 1500 &lt; ||
+		if{
+			0 (&gt; L:AB_SPOILER2_R, number)
+		}
+	}
+	
+	(A:SIM ON GROUND, bool) 1 ==
+	(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 30 &gt;= &amp;&amp;
+	(L:FBW_SEC_3, number) 1 == &amp;&amp;
+	(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+	if{	
+		(L:AB_SPOIL_LEFT_EXT_PERF_CORR_PERC, number) 30 - 1.429 * 0.875 * (&gt; L:AB_SPOILER1_L_Target, number)
+		(L:AB_SPOIL_RIGHT_EXT_PERF_CORR_PERC, number) 30 - 1.429 * 0.875 * (&gt; L:AB_SPOILER1_R_Target, number)
+		
+		(L:AB_SPOILER1_L, number) (L:AB_SPOILER1_L_Target, number) &lt;
+		if{
+			(L:AB_SPOILER1_L, number) 2 + (&gt; L:AB_SPOILER1_L, number)
+		}
+		(L:AB_SPOILER1_R, number) (L:AB_SPOILER1_R_Target, number) &lt;
+		if{
+			(L:AB_SPOILER1_R, number) 2 + (&gt; L:AB_SPOILER1_R, number)
+		}
+		
+	}
+		
+	(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 30 &lt;= 
+	(L:FBW_SEC_3, number) 0 == ||
+	(L:Green_Pressure, number) 1500 &lt; ||
+	if{
+		(L:AB_SPOILER1_L, number) 0 &gt;
+		if{
+			(L:AB_SPOILER1_L, number) 2 - (&gt; L:AB_SPOILER1_L, number)
+		}
+		(L:AB_SPOILER1_R, number) 0 &gt;
+		if{
+			(L:AB_SPOILER1_R, number) 2 - (&gt; L:AB_SPOILER1_R, number)
+		}
+	}
+	
+	<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX WORK AREA XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+	
+	(A:SIM ON GROUND, bool) 0 ==
+	if{
+		(L:AB_FBW_STEEP_ON_S, bool) 0 ==
+		if{
+			
+			(L:FBW_SEC_3, number) 1 ==
+			(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.33 * (A:AILERON POSITION, Percent) -0.58 * 0 max + 0.5 + (&gt; L:AB_SPOILER2_L, number)
+			}
+			(L:FBW_SEC_3, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER2_L, number)
+			}
+		
+			(A:ATC MODEL, string) 'A321CFM' scmp 0 ==
+			(A:ATC MODEL, string) 'A321IAE' scmp 0 == || 
+			if{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) -0.58 * 0 max 8.57 min + 0.5 - (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+			}
+			els{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) -0.58 * 0 max + 0.5 - (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+			}		
+			
+			(L:FBW_SEC_1, number) 1 ==
+			(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) -0.58 * 0 max + 0.5 + (&gt; L:AB_SPOILER4_L, number)
+			}
+
+			(L:FBW_SEC_1, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER4_L, number)
+			}
+
+			(L:FBW_SEC_2, number) 1 ==
+			(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(A:AILERON POSITION, Percent) -0.58 * (&gt; L:AB_SPOILER5_L, number)
+			}
+			(L:FBW_SEC_2, number) 0 ==
+			(L:Green_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER5_L, number)
+			}
+		
+			(L:FBW_SEC_3, number) 1 ==
+			(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.33 * (A:AILERON POSITION, Percent) 0.58 * 0 max + 0.5 + (&gt; L:AB_SPOILER2_R, number)
+			}
+			(L:FBW_SEC_3, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER2_R, number)
+			}
+			
+			(A:ATC MODEL, string) 'A321CFM' scmp 0 ==
+			(A:ATC MODEL, string) 'A321IAE' scmp 0 == || 
+			if{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) 0.58 * 0 max 8.57 min + 0.5 - (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+			}
+			els{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) 0.58 * 0 max + 0.5 - (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+			}			
+
+		
+			(L:FBW_SEC_1, number) 1 ==
+			(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) 0.58 * 0 max + 0.5 + (&gt; L:AB_SPOILER4_R, number)
+			}
+
+			(L:FBW_SEC_1, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER4_R, number)
+			}
+
+			(L:FBW_SEC_2, number) 1 ==
+			(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(A:AILERON POSITION, Percent) 0.58 * (&gt; L:AB_SPOILER5_R, number)
+			}
+			(L:FBW_SEC_2, number) 0 ==
+			(L:Green_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER5_R, number)
+			}
+		}
+		els{
+		
+			(L:FBW_SEC_3, number) 1 ==
+			(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(A:AILERON POSITION, Percent) -0.58 * 0 max 0.5 + (&gt; L:AB_SPOILER2_L, number)
+			}
+			(L:FBW_SEC_3, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER2_L, number)
+			}
+		
+			(A:ATC MODEL, string) 'A321CFM' scmp 0 ==
+			(A:ATC MODEL, string) 'A321IAE' scmp 0 == || 
+			if{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) -0.58 * 0 max 8.57 min + 0.5 - (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+			}
+			els{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) -0.58 * 0 max + 0.5 - (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_L, number)
+				}
+				
+			}		
+			
+			(L:FBW_SEC_1, number) 1 ==
+			(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) -0.58 * 0 max + 0.5 + (&gt; L:AB_SPOILER4_L, number)
+			}
+
+			(L:FBW_SEC_1, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER4_L, number)
+			}
+
+			(L:FBW_SEC_2, number) 1 ==
+			(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(A:AILERON POSITION, Percent) -0.58 * (&gt; L:AB_SPOILER5_L, number)
+			}
+			(L:FBW_SEC_2, number) 0 ==
+			(L:Green_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER5_L, number)
+			}
+		
+			(L:FBW_SEC_3, number) 1 ==
+			(L:Yellow_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(A:AILERON POSITION, Percent) 0.58 * 0 max 0.5 + (&gt; L:AB_SPOILER2_R, number)
+			}
+			(L:FBW_SEC_3, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER2_R, number)
+			}
+			
+			(A:ATC MODEL, string) 'A321CFM' scmp 0 ==
+			(A:ATC MODEL, string) 'A321IAE' scmp 0 == || 
+			if{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) 0.58 * 0 max 8.57 min + 0.5 - (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+			}
+			els{
+				
+				(L:FBW_SEC_1, number) 1 ==
+				(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+				if{
+					(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) 0.58 * 0 max + 0.5 - (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+				(L:FBW_SEC_1, number) 0 ==
+				(L:Blue_Pressure, number) 1500 &lt; ||
+				if{
+					0 (&gt; L:AB_SPOILER3_R, number)
+				}
+				
+			}			
+
+		
+			(L:FBW_SEC_1, number) 1 ==
+			(L:Blue_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 0.66 * (A:AILERON POSITION, Percent) 0.58 * 0 max + 0.5 + (&gt; L:AB_SPOILER4_R, number)
+			}
+
+			(L:FBW_SEC_1, number) 0 ==
+			(L:Yellow_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER4_R, number)
+			}
+
+			(L:FBW_SEC_2, number) 1 ==
+			(L:Green_Pressure, number) 1500 &gt;= &amp;&amp;
+			if{
+				(A:AILERON POSITION, Percent) 0.58 * (&gt; L:AB_SPOILER5_R, number)
+			}
+			(L:FBW_SEC_2, number) 0 ==
+			(L:Green_Pressure, number) 1500 &lt; ||
+			if{
+				0 (&gt; L:AB_SPOILER5_R, number)
+			}
+		}
+		
+		
+		(L:AB_SPOILER2_L, number) 35 &gt;
+		if{
+		(L:AB_SPOILER2_R, number) (L:AB_SPOILER2_L, number) 35 - - 0 max (&gt; L:AB_SPOILER2_R, number)
+		(L:AB_SPOILER2_L, number) 35 min (&gt; L:AB_SPOILER2_L, number) }
+		
+		(L:AB_SPOILER2_R, number) 35 &gt;
+		if{
+		(L:AB_SPOILER2_L, number) (L:AB_SPOILER2_R, number) 35 - - 0 max (&gt; L:AB_SPOILER2_L, number)
+		(L:AB_SPOILER2_R, number) 35 min (&gt; L:AB_SPOILER2_R, number) }
+		
+		(L:AB_SPOILER3_L, number) 40 &gt;
+		if{
+		(L:AB_SPOILER3_R, number) (L:AB_SPOILER3_L, number) 40 - - 0 max (&gt; L:AB_SPOILER3_R, number)
+		(L:AB_SPOILER3_L, number) 40 min (&gt; L:AB_SPOILER3_L, number) }
+		
+		(L:AB_SPOILER3_R, number) 40 &gt;
+		if{
+		(L:AB_SPOILER3_L, number) (L:AB_SPOILER3_R, number) 40 - - 0 max (&gt; L:AB_SPOILER3_L, number)
+		(L:AB_SPOILER3_R, number) 40 min (&gt; L:AB_SPOILER3_R, number) }
+		
+		(L:AB_SPOILER4_L, number) 40 &gt;
+		if{
+		(L:AB_SPOILER4_R, number) (L:AB_SPOILER4_L, number) 40 - - 0 max (&gt; L:AB_SPOILER4_R, number)
+		(L:AB_SPOILER4_L, number) 40 min (&gt; L:AB_SPOILER4_L, number) }
+		
+		(L:AB_SPOILER4_R, number) 40 &gt;
+		if{
+		(L:AB_SPOILER4_L, number) (L:AB_SPOILER4_R, number) 40 - - 0 max (&gt; L:AB_SPOILER4_L, number)
+		(L:AB_SPOILER4_R, number) 40 min (&gt; L:AB_SPOILER4_R, number) }
+		
+	}
+
+
+	<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX WORK AREA XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+	
+	<!-- Aileron droop on flaps -->	
+	(A:TRAILING EDGE FLAPS LEFT PERCENT, percent) 2 &gt;
+	(A:TRAILING EDGE FLAPS RIGHT PERCENT, percent) 2 &gt; ||
+	(A:FLAPS HANDLE INDEX, number) 1 &gt;= &amp;&amp;
+	if{
+		(L:Aileron_droop, number) 22 &lt;
+		if{
+			(L:Aileron_droop, number) 0.5 + (&gt; L:Aileron_droop, number)
+		}
+	}
+	(A:TRAILING EDGE FLAPS LEFT PERCENT, percent) 20 &lt;
+	(A:TRAILING EDGE FLAPS RIGHT PERCENT, percent) 20 &lt; ||
+	(A:FLAPS HANDLE INDEX, number) 0 == &amp;&amp;
+	if{
+		(L:Aileron_droop, number) 0 &gt;
+		if{
+			(L:Aileron_droop, number) 0.5 - (&gt; L:Aileron_droop, number)
+		}
+	}
+
+
+	(L:AB_PDS_COM1_SWAP, number) 1 ==
+	if{
+		(L:AB_PDS_COM1_SWAP_timout, number) 1 + (&gt; L:AB_PDS_COM1_SWAP_timout, number)
+		(L:AB_PDS_COM1_SWAP_timout, number) 54 ==
+		if{
+			0 (&gt; L:AB_PDS_COM1_SWAP, bool)
+			0 (&gt; L:AB_PDS_COM1_SWAP_timout, number)
+		}
+	}
+	
+	(L:AB_PDS_COM2_SWAP, number) 1 ==
+	if{
+		(L:AB_PDS_COM2_SWAP_timout, number) 1 + (&gt; L:AB_PDS_COM2_SWAP_timout, number)
+		(L:AB_PDS_COM2_SWAP_timout, number) 54 ==
+		if{
+			0 (&gt; L:AB_PDS_COM2_SWAP, bool)
+			0 (&gt; L:AB_PDS_COM2_SWAP_timout, number)
+		}
+	}
+	
+	<!-- ECAM Lower Engine oil qty -->
+	(L:EngL_Oil_qty, number) (L:EngL_Oil_qty_target, number) &lt;
+	if{
+		(L:EngL_Oil_qty, number) 0.1 + (&gt; L:EngL_Oil_qty, number)
+	}
+	(L:EngL_Oil_qty, number) (L:EngL_Oil_qty_target, number) &gt;
+	if{
+		(L:EngL_Oil_qty, number) 0.1 - (&gt; L:EngL_Oil_qty, number)
+	}
+	(L:EngL_Oil_qty_target, number) 0.00001 - (&gt; L:EngL_Oil_qty_target, number)
+
+	(L:EngR_Oil_qty, number) (L:EngR_Oil_qty_target, number) &lt;
+	if{
+		(L:EngR_Oil_qty, number) 0.1 + (&gt; L:EngR_Oil_qty, number)
+	}
+	(L:EngR_Oil_qty, number) (L:EngR_Oil_qty_target, number) &gt;
+	if{
+		(L:EngR_Oil_qty, number) 0.1 - (&gt; L:EngR_Oil_qty, number)
+	}
+	(L:EngR_Oil_qty_target, number) 0.00001 - (&gt; L:EngR_Oil_qty_target, number)
+
+	<!-- Flap 1 mode -->
+	(L:Flaps_handle_index_hist, number) 0 ==
+	(A:FLAPS HANDLE INDEX, number) 1 == &amp;&amp;
+	(A:AIRSPEED INDICATED, knots) 100 &lt;= &amp;&amp;
+	
+	(L:Flaps_handle_index_hist, number) 2 ==
+	(A:FLAPS HANDLE INDEX, number) 1 == &amp;&amp;
+	(A:AIRSPEED INDICATED, knots) 210 &lt;= &amp;&amp; ||
+	if{
+		1 (&gt; L:Flap1_mode, number)
+	}
+	(L:Flaps_handle_index_hist, number) 0 ==
+	(A:FLAPS HANDLE INDEX, number) 1 == &amp;&amp;
+	(A:AIRSPEED INDICATED, knots) 100 &gt; &amp;&amp;
+	
+	(L:Flaps_handle_index_hist, number) 2 ==
+	(A:FLAPS HANDLE INDEX, number) 1 == &amp;&amp;
+	(A:AIRSPEED INDICATED, knots) 210 &gt;= &amp;&amp; ||
+	
+	(L:Flap1_mode, number) 1 ==
+	(A:AIRSPEED INDICATED, knots) 210 &gt; &amp;&amp; ||
+	if{
+		2 (&gt; L:Flap1_mode, number)
+	}
+	
+	(A:FLAPS HANDLE INDEX, number) 1 !=
+	if{
+		0 (&gt; L:Flap1_mode, number)
+	}
+	(A:FLAPS HANDLE INDEX, number) (&gt; L:Flaps_handle_index_hist, number)
+	
+} 	<!-- end of code only called when not paused -->
+
+	<!-- Wheelchocks -->
+	
+	(L:MCDU_Wheelchocks, bool) 1 ==
+	(A:SIM ON GROUND, bool) 1 == &amp;&amp;
+	(A:BRAKE PARKING POSITION, bool) 1 ==
+	(A:BRAKE PARKING POSITION, bool) 0 ==
+	(A:ENG1 N1 RPM, percent) 5 &lt; &amp;&amp;
+	(A:ENG2 N1 RPM, percent) 5 &lt; &amp;&amp; || &amp;&amp;
+	(L:Wheelchocks_Set, bool) 0 == &amp;&amp;
+	if{
+		1 (&gt; L:Wheelchocks, bool)
+		1 (&gt; L:Wheelchocks_Set, bool)
+	}
+
+	(L:MCDU_Wheelchocks, bool) 0 ==
+	(L:Wheelchocks_Set, bool) 1 == &amp;&amp;
+	if{
+		0 (&gt; L:Wheelchocks, bool)
+		0 (&gt; L:Wheelchocks_Set, bool)
+	}
+
+	<!-- Cones -->
+
+	(L:MCDU_cones, bool) 1 == 
+	(A:BRAKE PARKING POSITION, bool) 1 == 
+	(L:Wheelchocks, bool) 1 == || &amp;&amp;
+	(A:SIM ON GROUND, bool) 1 == &amp;&amp;
+	if{
+		1 (&gt; L:Cones, bool)
+	}
+
+	(L:Cones, bool) 1 ==
+	(L:MCDU_cones, bool) 0 == &amp;&amp; 
+	if{
+		0 (&gt; L:Cones, bool)
+	}
+
+	<!-- Ext Power -->
+
+	(L:MCDU_EXTPOWERCART, bool) 1 ==
+	(A:BRAKE PARKING POSITION, bool) 1 == 
+	(L:Wheelchocks, bool) 1 == || &amp;&amp;
+	(A:SIM ON GROUND, bool) 1 == &amp;&amp;
+	if{
+		1 (&gt; L:Extpowercart, bool)
+		1 (&gt; L:ASC_GenRunLoop, bool)
+	}
+
+	(L:MCDU_EXTPOWERCART, bool) 0 ==
+	(L:Extpowercart, bool) 1 == &amp;&amp; 
+	if{
+		0 (&gt; L:Extpowercart, bool)
+		0 (&gt; L:ASC_GenRunLoop, bool)
+	}
+	
+	(L:MCDU_EXTPOWER, bool) 1 ==
+	(A:BRAKE PARKING POSITION, bool) 1 == 
+	(L:Wheelchocks, bool) 1 == || &amp;&amp;
+	(A:SIM ON GROUND, bool) 1 == &amp;&amp;
+	if{
+		1 (&gt; L:Extpower, bool)
+	}
+
+	(L:MCDU_EXTPOWER, bool) 0 ==
+	(L:Extpower, bool) 1 == &amp;&amp; 
+	if{
+		0 (&gt; L:Extpower, bool)
+	}
+
+	(A:SIM ON GROUND, bool) 0 == ||
+	(A:GROUND VELOCITY, knots) 0.3 &gt;= ||
+	(A:IS SLEW ACTIVE, bool) 0 == &amp;&amp;
+	if{
+		0 (&gt; L:MCDU_cones, bool)
+		0 (&gt; L:MCDU_Wheelchocks, bool)
+		0 (&gt; L:MCDU_EXTPOWERCART, bool)
+		0 (&gt; L:MCDU_EXTPOWER, bool)
+		0 (&gt; L:Cones, bool)
+		0 (&gt; L:Wheelchocks, bool)
+		0 (&gt; L:Wheelchocks_Set, bool)
+		0 (&gt; L:Extpowercart, bool)
+		0 (&gt; L:Extpower, bool)
+	}
+
+
+	<!-- Rudder limiter -->	
+	240 (A:AIRSPEED TRUE, knots) 140 - - 2.4 / (&gt; L:Rudderspeed, number)
+	3.333 (L:Rudderspeed, number) 0.266 * 0.034 + * 165.83 * (&gt; L:Ruddermax, number)
+	(A:AIRSPEED TRUE, knots) 140 &lt;
+	if{
+		16583 (&gt; L:Ruddermax, number)
+	}
+	
+	(A:AIRSPEED TRUE, knots) 380 &gt;
+	if{
+		1879 (&gt; L:Ruddermax, number)
+	}
+		
+	<!-- Downtrim limiter -->		
+	(A:ELEVATOR TRIM PCT, percent) -29 &lt;
+	if{
+		4743 (&gt; K:AXIS_ELEV_TRIM_SET)
+	}
+	
+	(A:PLANE ALT ABOVE GROUND, feet) 50 &lt;=
+	if{
+	(A:PLANE ALT ABOVE GROUND, feet) (A:PLANE ALT ABOVE GROUND, feet) 5.5 / + 7 + 5 / (&gt; L:Landlight_heigth2, number) }
+	(A:PLANE ALT ABOVE GROUND, feet) 50 &gt;
+	if{
+	(A:PLANE ALT ABOVE GROUND, feet) 22 + 5.6 / (&gt; L:Landlight_heigth2, number) }
+	
+	(L:AB_Sun_Phase, number) (A:Radio height,feet) 11.8 - 25 / near - 0 max (&gt; L:AB_Sun_Phase2, number)
+	
+	(L:AB_Sun_Phase, number) (A:Radio height,feet) 11.8 - 10.5 / near - 0 max (&gt; L:AB_Sun_Phase3, number)
+	
+	(A:AMBIENT VISIBILITY, meter) 8046.72 &gt;
+	if{
+		0 (&gt; L:AB_Light_LOVIZ, number) }
+	els{		
+		1 (&gt; L:AB_Light_LOVIZ, number) }
+		
+	(L:AB_Sun_Phase2, number) 0 ==
+	(L:AB_VC_OVH_ExtLight_Landing_Sw, bool) 0 == ||
+	(A:PLANE PITCH DEGREES, degrees) -9.5 &lt;= ||
+	if{
+	0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_1, number)
+	0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_2, number)
+	0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_3, number)
+	0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_4, number)
+
+	}
+	
+	(A:AMBIENT TEMPERATURE, celsius) -30 &lt;=
+	if{ (A:SMOKE ENABLE:1,bool) ! if{ 1 (&gt;K:SMOKE_ON) } }
+	els{ (A:SMOKE ENABLE:1,bool) if{ 1 (&gt;K:SMOKE_OFF) } }	
+	
+	(A:AMBIENT TEMPERATURE, celsius) -30 &lt;=
+	if{ (A:SMOKE ENABLE:2,bool) ! if{ 2 (&gt;K:SMOKE_ON) } }
+	els{ (A:SMOKE ENABLE:2,bool) if{ 2 (&gt;K:SMOKE_OFF) } }
+	
+	(A:Radio height,feet) 11.8 - 60 * (&gt; L:Landlight_Distance, number)
+	
+	(L:AB_VC_OVH_ExtLight_Landing_Sw, bool) 1 ==
+	if{
+		
+		(L:AB_Sun_Phase2, number) 1 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_1, number)
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_2, number)
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_3, number)
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_4, number)
+		
+
+		}
+		
+		(L:AB_Sun_Phase2, number) 2 ==
+		if{
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_3, number)
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_4, number)
+		
+
+		}
+		
+		(L:AB_Sun_Phase2, number) 3 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_2, number)
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_3, number)
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_4, number)
+		
+
+		}
+		
+		(L:AB_Sun_Phase2, number) 4 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_3, number)
+		0 (&gt;L:AB_LANDLIGHT_ANIM_SCALE_4, number)		
+
+		}
+		
+		(L:AB_Sun_Phase2, number) 5 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_3, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_LANDLIGHT_ANIM_SCALE_4, number)
+		
+
+		}
+		
+	}
+	
+	(L:AB_Sun_Phase2, number) 0 ==
+	(L:AB_VC_OVH_ExtLight_RwyTO_Sw, number) 0 == ||
+	if{
+	0 (&gt;L:AB_RWYTOLIGHT_SCALE_1, number)
+	0 (&gt;L:AB_RWYTOLIGHT_SCALE_2, number)
+	0 (&gt;L:AB_RWYTOLIGHT_SCALE_3, number)
+	0 (&gt;L:AB_RWYTOLIGHT_SCALE_4, number)
+
+	}
+	
+	(L:AB_VC_OVH_ExtLight_RwyTO_Sw, number) 1 ==
+	if{
+		
+		(L:AB_Sun_Phase2, number) 1 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_1, number)
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_2, number)
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_3, number)
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_4, number)	}
+		
+		(L:AB_Sun_Phase2, number) 2 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_2, number)
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_3, number)
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_4, number)	}
+		
+		(L:AB_Sun_Phase2, number) 3 ==
+		if{
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_3, number)
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_4, number)	}
+		
+		(L:AB_Sun_Phase2, number) 4 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_3, number)
+		0 (&gt;L:AB_RWYTOLIGHT_SCALE_4, number)	}
+		
+		(L:AB_Sun_Phase2, number) 5 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_3, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_RWYTOLIGHT_SCALE_4, number)
+		}
+		
+	}
+	
+	(L:AB_VC_OVH_ExtLight_Nose_Sw, number) 1 ==
+	(L:AB_Sun_Phase2, number) 3 &lt;= ||
+	(L:AB_Sun_Phase2, number) 1 != &amp;&amp;
+	if{		
+	(L:AB_Sun_Phase2, number) 1 - 0 max (&gt; L:AB_Sun_Phase2, number) }	
+	
+	
+	(L:AB_Sun_Phase2, number) 0 ==
+	(L:AB_VC_OVH_ExtLight_Nose_Sw, number) 0 == ||
+	if{
+	0 (&gt;L:AB_TAXILIGHT_SCALE_1, number)
+	0 (&gt;L:AB_TAXILIGHT_SCALE_2, number)
+	0 (&gt;L:AB_TAXILIGHT_SCALE_3, number)
+	0 (&gt;L:AB_TAXILIGHT_SCALE_4, number) }
+	
+	(L:AB_VC_OVH_ExtLight_Nose_Sw, number) 0 != 
+	if{
+
+		(L:AB_Sun_Phase2, number) 1 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_1, number)
+		0 (&gt;L:AB_TAXILIGHT_SCALE_2, number)
+		0 (&gt;L:AB_TAXILIGHT_SCALE_3, number)
+		0 (&gt;L:AB_TAXILIGHT_SCALE_4, number) }
+		
+		(L:AB_Sun_Phase2, number) 2 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_2, number)
+		0 (&gt;L:AB_TAXILIGHT_SCALE_3, number)
+		0 (&gt;L:AB_TAXILIGHT_SCALE_4, number) }
+		
+		(L:AB_Sun_Phase2, number) 3 ==
+		if{
+		0 (&gt;L:AB_TAXILIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_3, number)
+		0 (&gt;L:AB_TAXILIGHT_SCALE_4, number) }
+		
+		(L:AB_Sun_Phase2, number) 4 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_3, number)
+		0 (&gt;L:AB_TAXILIGHT_SCALE_4, number) }
+		
+		(L:AB_Sun_Phase2, number) 5 ==
+		if{
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_1, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_2, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_3, number)
+		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_4, number) }
+	}
+</Update>
+</Gauge>
