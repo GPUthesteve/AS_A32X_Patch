@@ -970,8 +970,6 @@ if{
 	}
 	(A:FLAPS HANDLE INDEX, number) (&gt; L:Flaps_handle_index_hist, number)
 	
-} 	<!-- end of code only called when not paused -->
-
 	<!-- Wheelchocks -->
 	
 	(L:MCDU_Wheelchocks, bool) 1 ==
@@ -1272,5 +1270,6 @@ if{
 		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_3, number)
 		(L:Landlight_Distance, number) 33.360 / 1 max (&gt;L:AB_TAXILIGHT_SCALE_4, number) }
 	}
+} 
 </Update>
 </Gauge>
