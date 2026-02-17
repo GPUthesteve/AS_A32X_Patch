@@ -885,7 +885,7 @@ if{
 				(L:Vol_GPWS_fac, number) (&gt;L:ASC_FWC_Pitch_VOL)
 			}
 			<!-- fwc Low speed sound -->		
-			(L:IAS_SM, number) (L:IAS_AccelSM, number) 0 max + (L:VLS_autocalc,number) &lt;=
+			(L:IAS_SM, number) (L:VLS_autocalc,number) &lt;=
 			(L:FBW_TOGALK, bool) 0 == &amp;&amp;
 			(L:Throttle_ani_fix_L, number) 100 != &amp;&amp;
 			(L:Throttle_ani_fix_R, number) 100 != &amp;&amp;
