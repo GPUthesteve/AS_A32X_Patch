@@ -10476,7 +10476,7 @@
 							<Size>68,14</Size>
 							<Bright>FALSE</Bright>
 							<FontFace>AirbusPFD</FontFace>
-							<FontHeight>13</FontHeight>
+							<FontHeight>12</FontHeight>
 							<FontColorScript>(L:FMA_THRmode_2nd_line_CLB, number) 2 &lt; if{ 0xffffff } els{ 0x2AB0EF }</FontColorScript>
 							<BackgroundColor>#010101</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10495,7 +10495,7 @@
 							<Size>110,14</Size>
 							<Bright>TRUE</Bright>
 							<FontFace>AirbusPFD</FontFace>
-							<FontHeight>13</FontHeight>
+							<FontHeight>12</FontHeight>
 							<FontColor>0xffff00</FontColor>
 							<BackgroundColor>#010101</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10511,7 +10511,7 @@
 							<Size>110,14</Size>
 							<Bright>TRUE</Bright>
 							<FontFace>AirbusPFD</FontFace>
-							<FontHeight>13</FontHeight>
+							<FontHeight>12</FontHeight>
 							<FontColor>0xffff00</FontColor>
 							<BackgroundColor>#010101</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10527,7 +10527,7 @@
 							<Size>110,14</Size>
 							<Bright>TRUE</Bright>
 							<FontFace>AirbusPFD</FontFace>
-							<FontHeight>13</FontHeight>
+							<FontHeight>12</FontHeight>
 							<FontColor>0xffff00</FontColor>
 							<BackgroundColor>#010101</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10543,7 +10543,7 @@
 							<Size>110,14</Size>
 							<Bright>TRUE</Bright>
 							<FontFace>AirbusPFD</FontFace>             
-							<FontHeight>13</FontHeight>
+							<FontHeight>12</FontHeight>
 							<FontColor>0xffff00</FontColor>
 							<BackgroundColor>#010101</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10559,7 +10559,7 @@
 							<Size>116,14</Size>
 							<Bright>TRUE</Bright>
 							<FontFace>AirbusPFD</FontFace>             
-							<FontHeight>13</FontHeight>
+							<FontHeight>12</FontHeight>
 							<FontColor>0xffffff</FontColor>
 							<BackgroundColor>#010101</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10609,7 +10609,7 @@
 							<Size>68,14</Size>
 							<Bright>FALSE</Bright>
 							<FontFace>AirbusPFD</FontFace>
-							<FontHeight>13</FontHeight>
+							<FontHeight>11</FontHeight>
 							<FontColorScript>0xffff00</FontColorScript>
 							<BackgroundColor>#000000</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10627,7 +10627,7 @@
 							<Size>68,14</Size>
 							<Bright>FALSE</Bright>
 							<FontFace>AirbusPFD</FontFace>
-							<FontHeight>13</FontHeight>
+							<FontHeight>11</FontHeight>
 							<FontColorScript>0xffff00</FontColorScript>
 							<BackgroundColor>#000000</BackgroundColor>
 							<Bold>FALSE</Bold>
@@ -10659,9 +10659,9 @@
 								%((L:FMA_Vertmode_act, number) 4 == )%{if}%\{ladj=L}%V/S%{end}
 								%((L:FMA_Vertmode_act, number) 4.5 == )%{if}%\{ladj=L}%FPA%{end}
 								%((L:FMA_Vertmode_act, number) 5 == )%{if}%ALT%{end}
-								%((L:FMA_Vertmode_act, number) 5.25 == )%{if}%ALT CST%{end}
+								%((L:FMA_Vertmode_act, number) 5.25 == )%{if}%ALT CSTR%{end}
 								%((L:FMA_Vertmode_act, number) 5.5 == (L:AB_TypeIdent, number) 51 &lt; &amp;&amp;)%{if}%ALT*%{end}
-								%((L:FMA_Vertmode_act, number) 5.75 == )%{if}%ALT CST*%{end}
+								%((L:FMA_Vertmode_act, number) 5.75 == )%{if}%ALT CSTR*%{end}
 								%((L:FMA_Vertmode_act, number) 6 == )%{if}%ALT CRZ%{end}
 								%((L:FMA_Vertmode_act, number) 6.5 == )%{if}%G/S *%{end}
 								%((L:FMA_Vertmode_act, number) 6.75 == )%{if}%FINAL%{end}
