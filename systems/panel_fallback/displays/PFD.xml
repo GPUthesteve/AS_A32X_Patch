@@ -34,57 +34,17 @@
 		</Update>
 		<Update> <!-- Pitch chevron visiblity calculation-->
 			<script>
-					(A:GROUND VELOCITY, knots) 45 &gt; 
+					(L:Flightmode, number) 5 &gt;=
+					(L:PFD_Radalt, number) 400 &lt; &amp;&amp;
+					(A:GROUND VELOCITY, knots) 45 &gt; &amp;&amp;
 					if{
-						(L:Flightmode, number) 6 ==
+						(L:AB_TypeIdent, number) 31 == (L:AB_TypeIdent, number) 32 == || 
 						if{
-							(L:PFD_Radalt, number) near 400 &lt; 
-							if{ 
-								(L:AB_TypeIdent, number) 11 == (L:AB_TypeIdent, number) 12 == || 
-								if{
-									1 (&gt;L:strikechev_vis,number)
-								}
-								(L:AB_TypeIdent, number) 21 == (L:AB_TypeIdent, number) 22 == ||
-								if{
-									2 (&gt;L:strikechev_vis,number)
-								}
-								(L:AB_TypeIdent, number) 31 == (L:AB_TypeIdent, number) 32 == || 
-								if{
-									3 (&gt;L:strikechev_vis,number)
-								}
-								(L:AB_TypeIdent, number) 41 == (L:AB_TypeIdent, number) 42 == ||
-								if{
-									4 (&gt;L:strikechev_vis,number)
-								}
-							}
-							els{
-								0 (&gt;L:strikechev_vis,number)
-							}
+							3 (&gt;L:strikechev_vis,number)
 						}
-						(L:Flightmode, number) 4 == (L:Flightmode, number) 5 == || 
+						(L:AB_TypeIdent, number) 41 == (L:AB_TypeIdent, number) 42 == ||
 						if{
-							(L:PFD_Radalt, number) near 20 &lt;
-							if{
-								(L:AB_TypeIdent, number) 11 == (L:AB_TypeIdent, number) 12 == ||  
-								if{
-									1 (&gt;L:strikechev_vis,number)
-								}
-								(L:AB_TypeIdent, number) 21 == (L:AB_TypeIdent, number) 22 == || 
-								if{
-									2 (&gt;L:strikechev_vis,number)
-								}
-								(L:AB_TypeIdent, number) 31 == (L:AB_TypeIdent, number) 32 == || 
-								if{
-									3 (&gt;L:strikechev_vis,number)
-								}
-								(L:AB_TypeIdent, number) 41 == (L:AB_TypeIdent, number) 42 == || 
-								if{
-									4 (&gt;L:strikechev_vis,number)
-								}
-							}
-							els{
-								0 (&gt;L:strikechev_vis,number)
-							}
+							4 (&gt;L:strikechev_vis,number)
 						}
 					}
 					els{
@@ -619,128 +579,6 @@
 						</Point>
 						<Point>
 							<FloatPosition>0,89</FloatPosition>
-						</Point>
-						<Axis id="Axis">
-							<FloatPosition>0,0</FloatPosition>
-						</Axis>
-					</Polygon>
-					<MaskImage id="Mask_attitude.bmp" Name="Mask_attitude.bmp">
-						<Axis>100,100</Axis>
-						<Transparent>True</Transparent>
-					</MaskImage>
-					<Shift>
-						<Expression>
-							<Script>(A:PLANE PITCH DEGREES, radians) rddg 15 min -30 max</Script>
-						</Expression>
-						<NonlinearityTable>
-							<NonlinearityEntry>
-								<ExpressionResult>40</ExpressionResult>
-								<FloatPosition>-1,-144</FloatPosition>
-							</NonlinearityEntry>
-							<NonlinearityEntry>
-								<ExpressionResult>0</ExpressionResult>
-								<FloatPosition>-1,0</FloatPosition>
-							</NonlinearityEntry>
-							<NonlinearityEntry>
-								<ExpressionResult>-40</ExpressionResult>
-								<FloatPosition>-1,144</FloatPosition>
-							</NonlinearityEntry>
-						</NonlinearityTable>
-					</Shift>
-					<Rotation>
-						<Expression>
-							<Script>(A:PLANE BANK DEGREES, radians) </Script>
-						</Expression>
-					</Rotation>
-				</Element>
-				<Element id="Strike Pitch Chevron 318">
-					<Visibility>(L:strikechev_vis,number) 1 ==</Visibility>
-					<Polygon id="Tail Chevron 318">
-						<Bright>True</Bright>
-						<LineWidth>2</LineWidth>
-						<LineColor>#ff0000</LineColor>
-						<FillColor>#000000</FillColor>
-						<Point>
-							<FloatPosition>0,-58</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>-13,-83</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>-8,-83</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>0,-66</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>8,-83</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>13,-83</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>0,-58</FloatPosition>
-						</Point>
-						<Axis id="Axis">
-							<FloatPosition>0,0</FloatPosition>
-						</Axis>
-					</Polygon>
-					<MaskImage id="Mask_attitude.bmp" Name="Mask_attitude.bmp">
-						<Axis>100,100</Axis>
-						<Transparent>True</Transparent>
-					</MaskImage>
-					<Shift>
-						<Expression>
-							<Script>(A:PLANE PITCH DEGREES, radians) rddg 15 min -30 max</Script>
-						</Expression>
-						<NonlinearityTable>
-							<NonlinearityEntry>
-								<ExpressionResult>40</ExpressionResult>
-								<FloatPosition>-1,-144</FloatPosition>
-							</NonlinearityEntry>
-							<NonlinearityEntry>
-								<ExpressionResult>0</ExpressionResult>
-								<FloatPosition>-1,0</FloatPosition>
-							</NonlinearityEntry>
-							<NonlinearityEntry>
-								<ExpressionResult>-40</ExpressionResult>
-								<FloatPosition>-1,144</FloatPosition>
-							</NonlinearityEntry>
-						</NonlinearityTable>
-					</Shift>
-					<Rotation>
-						<Expression>
-							<Script>(A:PLANE BANK DEGREES, radians) </Script>
-						</Expression>
-					</Rotation>
-				</Element>
-				<Element id="Strike Pitch Chevron 319">
-					<Visibility>(L:strikechev_vis,number) 2 ==</Visibility>
-					<Polygon id="Tail Chevron 319">
-						<Bright>True</Bright>
-						<LineWidth>2</LineWidth>
-						<LineColor>#ff0000</LineColor>
-						<FillColor>#000000</FillColor>
-						<Point>
-							<FloatPosition>0,-53</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>-13,-78</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>-8,-78</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>0,-61</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>8,-78</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>13,-78</FloatPosition>
-						</Point>
-						<Point>
-							<FloatPosition>0,-53</FloatPosition>
 						</Point>
 						<Axis id="Axis">
 							<FloatPosition>0,0</FloatPosition>
