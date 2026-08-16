@@ -175,16 +175,16 @@
 							\{lsp=38}\n\{lsp}
 							\t\t\{md}30\{up}  ________________________  \{md}30\{up}\n\n\n\n\n
 							\t\t\t\t\t_____\n\n\n\n\n
-							\t\t\t\t__________\n\n\n\n\n\n\n
-							\t\t\t\t\t_____\n\n\n\n\n\n\n
+											\t\t\t\t__________\n\n\n\n\n\n\n
+											\t\t\t\t\t_____\n\n\n\n\n\n\n
 							\t\t\t\{md} 20\{up} _______________ \{md}20\{up}\n\n\n\n\n\n\n
-							\t\t\t\t\t_____\n\n\n\n\n\n\n
-							\t\t\t\t__________\n\n\n\n\n\n\n
-							\t\t\t\t\t_____\n\n\n\n\n\n\n
+											\t\t\t\t\t_____\n\n\n\n\n\n\n
+											\t\t\t\t__________\n\n\n\n\n\n\n
+											\t\t\t\t\t_____\n\n\n\n\n\n\n
 							\t\t\t\{md} 10\{up} _______________ \{md}10\{up}\n\n\n\n\n\n\n
-							\t\t\t\t\t_____\n\n\n\n\n\n\n
-							\t\t\t\t__________\n\n\n\n\n\n\n
-							\t\t\t\t\t_____\n\n\n\n\n\n\n
+											\t\t\t\t\t_____\n\n\n\n\n\n\n
+											\t\t\t\t__________\n\n\n\n\n\n\n
+											\t\t\t\t\t_____\n\n\n\n\n\n\n
 							%
 						</GaugeString>
 					</GaugeText>
@@ -4464,7 +4464,7 @@
 					</Polyline>
 					<Shift>
 						<Expression>
-							<Script>(L:IAS_SM, number) (L:AB_PFD_VLS, number) (L:AB_SPOIL_EXT_PERF_CORR_PERC, number) 100 / 10 * + - (L:FBWAlphaMax, number) (A:INCIDENCE ALPHA, radians) rddg abs / 1 min * 75 min 75 /-/ max</Script>
+							<Script>(L:IAS_SM, number) (L:AB_PFD_VLS, number) (A:SPOILERS HANDLE POSITION, percent) 100 / 10 * + - (L:FBWAlphaMax, number) (A:INCIDENCE ALPHA, radians) rddg abs / 1 min * 75 min 75 /-/ max</Script>
 						</Expression>
 						<NonlinearityTable>
 							<NonlinearityEntry>
@@ -10497,9 +10497,9 @@
 								%((L:FMA_Vertmode_act, number) 4 == )%{if}%\{ladj=L}%V/S%{end}
 								%((L:FMA_Vertmode_act, number) 4.5 == )%{if}%\{ladj=L}%FPA%{end}
 								%((L:FMA_Vertmode_act, number) 5 == )%{if}%ALT%{end}
-								%((L:FMA_Vertmode_act, number) 5.25 == )%{if}%ALT CSTR%{end}
+								%((L:FMA_Vertmode_act, number) 5.25 == )%{if}%ALT CST%{end}
 								%((L:FMA_Vertmode_act, number) 5.5 == (L:AB_TypeIdent, number) 51 &lt; &amp;&amp;)%{if}%ALT*%{end}
-								%((L:FMA_Vertmode_act, number) 5.75 == )%{if}%ALT CSTR*%{end}
+								%((L:FMA_Vertmode_act, number) 5.75 == )%{if}%ALT CST*%{end}
 								%((L:FMA_Vertmode_act, number) 6 == )%{if}%ALT CRZ%{end}
 								%((L:FMA_Vertmode_act, number) 6.5 == )%{if}%G/S *%{end}
 								%((L:FMA_Vertmode_act, number) 6.75 == )%{if}%FINAL%{end}
